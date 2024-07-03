@@ -4,22 +4,22 @@
 
 ### What is it?
 
-* **An experimental minimal mock-up of a Digital Twin Framework for Sedaro - in Rust.**
-* **A proof-of-concept for running analog- and digital-twins in a distributed environment.**
-* **A thought experiment as the basis for discussing digital twins, M&S, and data.**
-* **A good chance to talk about Rust programming and the meaning of life.**
+* An experimental minimal mock-up of a Digital Twin Framework for Sedaro - in Rust.
+* A proof-of-concept for running analog- and digital-twins in a distributed environment.
+* A thought experiment as the basis for discussing digital twins, M&S, and data.
+* A good chance to talk about Rust programming and the meaning of life.
 
 ### Setup and Running
 
-* **Open a browser to http://localhost:3000/ and wait for screen updates.**
-* **In the main source directory (sedaro-twin) type ```docker compose up```.**
-* **Say ***Doh!*** - because you forgot to install and run Docker.**
+* Open a browser to http://localhost:3000/ and wait for screen updates.
+* In the main source directory (sedaro-twin) type ```docker compose up```.
+* Say ***Doh!*** - because you forgot to install and run Docker.
 
 ### Troubleshooting
 
-* **Just wait for the presentation and demo.**
-* **There will be a presentation and demo... right?**
-* **Call Tom (740) 707-2711 and say "what the heck?".**
+* Just wait for the presentation and demo.
+* There will be a presentation and demo... right?
+* Call Tom (740) 707-2711 and say "what the heck?".
 
 ### Salient thoughts on this project (in no apparent order)
 
