@@ -1,0 +1,63 @@
+version: "0.42"
+services:
+
+  # Sedaro Analog Twin
+  # The twin that samples infinite-precision data
+  # and passes it to the digital twin
+  sedaro-analog:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SEDARO_TWIN_MODE: "analog"
+    image: "sedaro/analog"
+    network_mode: "host"
+
+  # Sedaro Digital Twin
+  # The twin that receives finite-precision data
+  # and passes it to a GUI (or what-have-you)
+
+  sedaro-digital:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SEDARO_TWIN_MODE: "digital"
+    image: "sedaro/digital"
+    network_mode: "host"
+    volumes:
+      - ./sedaro-gui/app/public/:/public/
+      - ./sedaro-gui/app/:/app/
+      - /app/node_modules/
+
+  #
+  # Simple node based gui (AKA Sedaro-nano)
+  # This is just the GUI... no data is generated here
+  #
+  sedaro-gui:
+    build:
+      context: sedaro-gui
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    image: "sedaro/gui"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - ./sedaro-gui/app/:/app/
+      - /app/node_modules/
+    command: /bin/sh -c "npm start"
+
+  #
+  # A message queue for simple data communication.
+  # Every service is containerized and distributed, so
+  # this queue is used to exchange state... Analog -> Digital
+  #
+  rabbitmq:
+    environment:
+      - RABBITMQ_DEFAULT_USER=sedaro
+      - RABBITMQ_DEFAULT_PASS=root
+    image: "rabbitmq"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
